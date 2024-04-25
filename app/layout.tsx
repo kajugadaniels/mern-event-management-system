@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
 
 import './globals.css'
 
@@ -23,22 +24,10 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en">
-            <head>
-                {/* Link to Google Fonts */}
-                <link
-                    href={`https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap`}
-                    rel="stylesheet"
-                />
-                <style>
-                    {`
-                        body {
-                            font-family: 'Poppins', sans-serif; /* Apply Poppins font */
-                        }
-                    `}
-                </style>
-            </head>
-            <body>{children}</body>
-        </html>
+        <ClerkProvider>
+            <html lang="en">
+                <body className={poppins.variable}>{children}</body>
+            </html>
+        </ClerkProvider>
     )
 }
